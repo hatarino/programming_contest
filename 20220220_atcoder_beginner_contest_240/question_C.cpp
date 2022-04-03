@@ -1,41 +1,41 @@
 #include <bits/stdc++.h>
 using namespace std;
 
-// Now result is timeout.
-
-int N;
-int X;
-int a[100];
-int b[100];
-
-bool dfs(int i, int sum)
-{
-    if (i == N)
-    {
-        return sum == X;
-    }
-    if (dfs(i + 1, sum + a[i]))
-    {
-        return true;
-    }
-    if (dfs(i + 1, sum + b[i]))
-    {
-        return true;
-    }
-    return false;
-}
-
 int main()
 {
-    cin >> N;
-    cin >> X;
-    for (int i = 0; i < N; i++)
+    int N, X;
+    cin >> N >> X;
+    int a[N], b[N];
+    for (int i = 0; i < N; ++i)
     {
         cin >> a[i];
         cin >> b[i];
     }
+    bool dp[N + 1][X + 1];
 
-    if (dfs(0, 0))
+    memset(dp, 0, sizeof(dp));
+    dp[0][0] = true;
+
+    for (int i = 0; i < N; ++i)
+    {
+        for (int x = 0; x <= X; ++x)
+        {
+            if (a[i] <= x)
+            {
+                dp[i + 1][x] = dp[i + 1][x] | dp[i][x - a[i]];
+            }
+            if (b[i] <= x)
+            {
+                dp[i + 1][x] = dp[i + 1][x] | dp[i][x - b[i]];
+            }
+            if (a[i] > x && b[i] > x)
+            {
+                dp[i + 1][x] = false;
+            }
+        }
+    }
+
+    if (dp[N][X])
     {
         cout << "Yes" << endl;
     }
