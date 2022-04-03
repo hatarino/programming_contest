@@ -3,15 +3,13 @@ using namespace std;
 // Use long long type because max value of Ai, Bi, K is 10^9.
 typedef long long ll;
 
-// Now result is wrong.
 int main()
 {
     ll N, K;
     cin >> N >> K;
-    ll A[N];
-    ll B[N];
-    bool dpA[N];
-    bool dpB[N];
+    vector<ll> A(N), B(N);
+    // Use vector and be sure to initialize the vector.
+    vector<bool> dpA(N, false), dpB(N, false);
     dpA[0] = true;
     dpB[0] = true;
     for (ll i = 0; i < N; ++i)
