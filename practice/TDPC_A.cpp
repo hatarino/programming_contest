@@ -1,6 +1,8 @@
 #include <bits/stdc++.h>
 using namespace std;
 
+// SEE: https://atcoder.jp/contests/tdpc/tasks/tdpc_contest
+
 int main()
 {
     int N;
