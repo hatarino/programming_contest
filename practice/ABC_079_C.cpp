@@ -12,6 +12,7 @@ int main()
     int ans = 0;
     char opList[3];
 
+    // 0~2^3 -> 000 001 010 011 100 101 110 111
     for (int bit = 0; bit < (1 << N - 1); ++bit)
     {
         ans = ABCD[0] - '0';
