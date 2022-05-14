@@ -20,6 +20,7 @@ int main()
 
     // Use vector.
     // SEE: http://tamori.3zoku.com/linux/stack/stack.html
+    // Type of vector is long long but construct with INT_MAX because constructiong with LLONG_MAX may cause overflow.
     vector<vector<long long>> dp(N + 1, vector<long long>(MAX_N_V + 1, INT_MAX));
     dp[0][0] = 0;
 

@@ -39,4 +39,7 @@
 # VSCode settings
 .vscode/
 
+# AtCoder library
+ac-library/
+
 .DS_Store
