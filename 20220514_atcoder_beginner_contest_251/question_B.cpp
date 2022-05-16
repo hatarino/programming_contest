@@ -12,28 +12,50 @@ int main()
         cin >> A[i];
     }
 
-    vector<vector<int>> dp(N + 1, vector<int>(W + 1, 1000));
-    dp[0][0] = 0;
+    vector<bool> flag(W + 1, false);
 
     for (int i = 0; i < N; ++i)
     {
-        for (int j = 0; j <= W; ++j)
+        int w = A[i];
+        if (w <= W)
         {
-            dp[i + 1][j] = min(dp[i + 1][j], dp[i][j]);
-            if (j - A[i] >= 0)
+            flag[w] = true;
+        }
+    }
+
+    for (int i = 0; i < N; ++i)
+    {
+        for (int j = i + 1; j < N; ++j)
+        {
+            int w = A[i] + A[j];
+            if (w <= W)
             {
-                dp[i + 1][j] = min(dp[i + 1][j], dp[i][j - A[i]] + 1);
+                flag[w] = true;
+            }
+        }
+    }
+
+    for (int i = 0; i < N; ++i)
+    {
+        for (int j = i + 1; j < N; ++j)
+        {
+            for (int k = j + 1; k < N; ++k)
+            {
+                int w = A[i] + A[j] + A[k];
+                if (w <= W)
+                {
+                    flag[w] = true;
+                }
             }
         }
     }
 
     int ans = 0;
-
-    for (int i = 1; i <= W; ++i)
+    for (int i = 0; i <= W; ++i)
     {
-        if (dp[N][i] <= 3)
+        if (flag[i])
         {
-            ++ans;
+            ans++;
         }
     }
 
